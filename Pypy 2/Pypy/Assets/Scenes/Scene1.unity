@@ -948,7 +948,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e855077a294025e4f85cb20f44f8ad5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deadZone: 10
+  deadZone: 20
 --- !u!4 &996558313
 Transform:
   m_ObjectHideFlags: 0
@@ -2402,8 +2402,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95166549610d9cb439b2ce3439ae403e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyOne: 0
-  keyTwo: 0
   moveDirection: {x: 10, y: 0, z: 0}
 --- !u!54 &1973042926
 Rigidbody:

@@ -7,57 +7,40 @@ using UnityEngine.SceneManagement;
 
 public class Cup : MonoBehaviour
 {
-    [SerializeField] KeyCode keyOne;
-    [SerializeField] KeyCode keyTwo;
     [SerializeField] Vector3 moveDirection;
-    
+    private Rigidbody rb;
 
     private void Start()
     {
         SwipeScript.SwipeEvent += HandleSwipe;
+        rb = GetComponent<Rigidbody>();
+
     }
     private void HandleSwipe(Vector2 direction)
     {
+        bool isPositionXFrozen = (rb.constraints & RigidbodyConstraints.FreezePositionX) != 0;
+        bool isPositionYFrozen = (rb.constraints & RigidbodyConstraints.FreezePositionY) != 0;
+        bool isPositionZFrozen = (rb.constraints & RigidbodyConstraints.FreezePositionZ) != 0;
         // Здесь вы можете выполнить необходимые действия в зависимости от направления свайпа.
-        if (direction == Vector2.left)
+        if (direction == Vector2.left && isPositionXFrozen & isPositionYFrozen)
         {
             GetComponent<Rigidbody>().velocity -= moveDirection;
         }
-        else if (direction == Vector2.right)
+        else if (direction == Vector2.right && isPositionXFrozen & isPositionYFrozen)
         {
             GetComponent<Rigidbody>().velocity += moveDirection;
             
         }
-        else if (direction == Vector2.up)
+        else if (direction == Vector2.up && isPositionZFrozen & isPositionYFrozen)
         {
             GetComponent<Rigidbody>().velocity -= moveDirection;
             
         }
-        else if (direction == Vector2.down)
+        else if (direction == Vector2.down && isPositionZFrozen & isPositionYFrozen)
         {
             GetComponent<Rigidbody>().velocity += moveDirection;
         }
     }
-
-    //private void FixedUpdate()
-    //{
-    //    if (Input.GetKey(keyOne))
-    //    {
-    //        GetComponent<Rigidbody>().velocity += moveDirection;
-    //    }
-    //    if (Input.GetKey(keyTwo))
-    //    {
-    //        GetComponent<Rigidbody>().velocity -= moveDirection;
-    //    }
-    //    if (Input.GetKey(KeyCode.R))
-    //    {
-    //        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    //    }
-    //    if (Input.GetKey(KeyCode.Q))
-    //    {
-    //        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-    //    }
-    //}
     private void OnTriggerEnter(Collider other)
     {
         if (this.CompareTag("Player") && other.CompareTag("Finish"))

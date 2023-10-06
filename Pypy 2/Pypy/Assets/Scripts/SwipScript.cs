@@ -68,9 +68,9 @@ public class SwipeScript : MonoBehaviour
         if (swipeDelta.magnitude > deadZone)
         {
             if (Mathf.Abs(swipeDelta.x) > Mathf.Abs(swipeDelta.y))
-                SwipeEvent(swipeDelta.x > 0 ? Vector2.right : Vector2.left);
+                SwipeEvent(swipeDelta.x > 0 & swipeDelta.y > 0 ? Vector2.right : Vector2.left);
             else
-                SwipeEvent(swipeDelta.y > 0 ? Vector2.up : Vector2.down);
+                SwipeEvent(swipeDelta.y > 0 & swipeDelta.x < 0 ? Vector2.up : Vector2.down);
 
             ResetSwipe();
         }
