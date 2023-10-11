@@ -9,6 +9,8 @@ public class Cup : MonoBehaviour
 {
     [SerializeField] Vector3 moveDirection;
     private Rigidbody rb;
+    [SerializeField] private float speed;
+    [SerializeField] private GameObject Panel;
 
     private void Start()
     {
@@ -24,29 +26,29 @@ public class Cup : MonoBehaviour
         // Здесь вы можете выполнить необходимые действия в зависимости от направления свайпа.
         if (direction == Vector2.left && isPositionXFrozen & isPositionYFrozen)
         {
-            GetComponent<Rigidbody>().velocity -= moveDirection;
+            GetComponent<Rigidbody>().velocity -= moveDirection * speed;
         }
         else if (direction == Vector2.right && isPositionXFrozen & isPositionYFrozen)
         {
-            GetComponent<Rigidbody>().velocity += moveDirection;
+            GetComponent<Rigidbody>().velocity += moveDirection * speed;
             
         }
         else if (direction == Vector2.up && isPositionZFrozen & isPositionYFrozen)
         {
-            GetComponent<Rigidbody>().velocity -= moveDirection;
+            GetComponent<Rigidbody>().velocity -= moveDirection * speed;
             
         }
         else if (direction == Vector2.down && isPositionZFrozen & isPositionYFrozen)
         {
-            GetComponent<Rigidbody>().velocity += moveDirection;
+            GetComponent<Rigidbody>().velocity += moveDirection * speed;
         }
     }
     private void OnTriggerEnter(Collider other)
     {
         if (this.CompareTag("Player") && other.CompareTag("Finish"))
         {
-            PlayerPrefs.SetInt("level",SceneManager.GetActiveScene().buildIndex + 1);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            Panel.SetActive(true);
+            speed = 0f;
         }
     }
 }
