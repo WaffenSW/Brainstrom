@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Microsoft.Unity.VisualStudio.Editor;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.Collections.LowLevel.Unsafe;
 using UnityEditor.Experimental.GraphView;
@@ -11,7 +12,6 @@ public class Cup : MonoBehaviour
     private Rigidbody rb;
     [SerializeField] private float speed;
     [SerializeField] private GameObject Panel;
-
     private void Start()
     {
         SwipeScript.SwipeEvent += HandleSwipe;

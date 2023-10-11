@@ -359,6 +359,7 @@
 "Assets/Scripts/Cup.cs"
 "Assets/Scripts/LocalMenuScript.cs"
 "Assets/Scripts/MainButtons.cs"
+"Assets/Scripts/StarActivetes.cs"
 "Assets/Scripts/SwipScript.cs"
 -langversion:9.0
 

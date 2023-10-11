@@ -6,7 +6,12 @@ using UnityEngine.SceneManagement;
 
 public class LocalMenuScript : MonoBehaviour
 {
-    
+    [SerializeField] private Animator starAnimation;
+
+    private void Start()
+    {
+        starAnimation.SetBool("Star",true);
+    }
     public void NextLevel()
     {
         int Scene = SceneManager.GetActiveScene().buildIndex + 1;
